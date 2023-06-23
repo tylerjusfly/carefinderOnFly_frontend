@@ -2,7 +2,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 const SuspenseView = () => {
   return (
-    <div>
+    <div className='flex justify-center items-center'>
       <ClipLoader color='#A020F0' loading={true} size={30} aria-label='Loading Spinner' />
     </div>
   );
