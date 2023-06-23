@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const AddHospital = () => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const onSubmitHospital = async (data: HospitalFormType) => {
+  const onSubmitHospital = async (data: HospitalFormType, func: any) => {
     console.log(data);
 
     try {
@@ -16,9 +16,9 @@ const AddHospital = () => {
       const response = await request(HOSPITAL_API, 'POST', { ...data, hospitalname: data.hospitalName });
 
       if (response.success) {
-        console.log(response);
         notifySuccess('Hospital Successfully Added');
         setSubmitting(false);
+        func();
       } else {
         notifyError(response.message || 'error occurred saving Hospital');
         setSubmitting(false);

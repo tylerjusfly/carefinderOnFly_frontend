@@ -19,7 +19,7 @@ export type HospitalFormType = z.infer<typeof hospitalSchema>;
 
 // set expected props
 type HospitalFormProps = {
-  onSubmitHospital: (data: HospitalFormType) => void;
+  onSubmitHospital: (data: HospitalFormType, func: any) => void;
   submitting: boolean;
 };
 
@@ -34,8 +34,7 @@ const AddHospitalForm: React.FC<HospitalFormProps> = ({ onSubmitHospital, submit
   });
 
   const onSubmit = (data: HospitalFormType) => {
-    onSubmitHospital(data);
-    reset();
+    onSubmitHospital(data, reset);
   };
 
   return (
