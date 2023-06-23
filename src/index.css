@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@500;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+}
+
+:root {
+  font-family: 'Saira Extra Condensed', 'Trebuchet MS';
+}
+
+.toast-message-success {
+  background: green;
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+  font-weight: 700;
+}
+
+.toast-message-error {
+  background: red;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+  font-weight: 700;
+}
+
+@keyframes sliderin {
+  0% {
+    transform: translate3d(110%, 0, 0);
+    visibility: visible;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: sliderin 1.5s ease-out both;
+}
+
+@keyframes sliderout {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    visibility: hidden;
+    transform: translate3d(110%, 0, 0);
+    opacity: 1;
+  }
+}
+
+.slide-out-left {
+  animation: sliderout 2s ease-in both;
+}
