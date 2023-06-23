@@ -7,7 +7,7 @@ const ApiusageDocs = () => {
         <pre>
           {`
 //to fetch All Hosipital data 'limit' -10 by default, page 1 by default
-    await fetch('http://localhost:7001/hospital/list', {
+    await fetch('https://carefinder-back.onrender.com', {
         method : 'GET',
             headers: {
                 Accept: 'application/json',
@@ -20,7 +20,7 @@ const ApiusageDocs = () => {
 
           {`
     // Fetch or search results with hospital name
-    await fetch('http://localhost:7001/hospital/list?limit=30&hospitalName=deda', {
+    await fetch('https://carefinder-back.onrender.com/hospital/list?limit=30&hospitalName=deda', {
         method : 'GET',
             headers: {
                 Accept: 'application/json',

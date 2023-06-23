@@ -28,12 +28,14 @@ const AddHospitalForm: React.FC<HospitalFormProps> = ({ onSubmitHospital, submit
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<HospitalFormType>({
     resolver: zodResolver(hospitalSchema),
   });
 
   const onSubmit = (data: HospitalFormType) => {
     onSubmitHospital(data);
+    reset();
   };
 
   return (
