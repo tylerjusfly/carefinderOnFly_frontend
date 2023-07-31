@@ -1,4 +1,9 @@
+import { useState } from 'react';
+
 const LoginForm = () => {
+  // Admin Auth will happen in redux
+  const [username, setUsername] = useState('');
+
   return (
     <div className='flex justify-center items-center my-20'>
       <div className='w-full max-w-md'>
@@ -46,7 +51,7 @@ const LoginForm = () => {
             </a>
           </div>
         </form>
-        <p className='text-center text-gray-500 text-xs'>©2020 Carefinder. All rights reserved.</p>
+        <p className='text-center text-gray-500 text-xs'>©2023 Carefinder. All rights reserved.</p>
       </div>
     </div>
   );
