@@ -1,8 +1,22 @@
 import { useState } from 'react';
+import { loginUserFromAPI, pendingLogin } from '../../App/features/generalSlice';
+import { store } from '../../App/store';
+import { Data } from '../../App/types';
+import { useSelector } from 'react-redux';
 
 const LoginForm = () => {
   // Admin Auth will happen in redux
-  const [username, setUsername] = useState('');
+  const [loginData, setLoginData] = useState<Data>({
+    username: 'tyler',
+    password: 'ladygaga',
+  });
+
+  const loading = useSelector(pendingLogin);
+
+  const submitLogin = () => {
+    store.dispatch(loginUserFromAPI(loginData));
+    console.log(loading, 'pendingLogin');
+  };
 
   return (
     <div className='flex justify-center items-center my-20'>
@@ -43,8 +57,9 @@ const LoginForm = () => {
             <button
               className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               type='button'
+              onClick={submitLogin}
             >
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </button>
             <a className='inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800' href='#'>
               Forgot Password?
