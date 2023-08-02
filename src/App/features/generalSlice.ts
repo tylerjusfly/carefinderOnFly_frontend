@@ -4,6 +4,7 @@ import { AdminData, Data } from '../types';
 const initialState = {
   LoggedInUser: {},
   loadingAdminLogin: false,
+  error: '',
 };
 
 // type initialStateType = typeof initialState;
@@ -19,6 +20,12 @@ export const loginUserFromAPI = createAsyncThunk('general/loginuser', async (dat
     body: JSON.stringify({ username: data.username, password: data.password }),
   }).then((response) => response.json());
 
+  // if(response.success){
+  //   return response.result;
+  // }else{
+  //   return response
+  // }
+
   return response.result;
 });
 
@@ -27,7 +34,7 @@ export const generalSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loginUserFromAPI.pending, (state, action) => {
+    builder.addCase(loginUserFromAPI.pending, (state) => {
       state.loadingAdminLogin = true;
     });
 
@@ -36,10 +43,18 @@ export const generalSlice = createSlice({
       state.LoggedInUser = action.payload;
       state.loadingAdminLogin = false;
     });
+
+    builder.addCase(loginUserFromAPI.rejected, (state, action) => {
+      const errmsg = action.error.message || 'Login failed';
+      console.log(action, 'err action');
+      state.loadingAdminLogin = false;
+      state.error = errmsg;
+    });
   },
 });
 
 export const pendingLogin = (state: any) => state.general.loadingAdminLogin;
+export const loginErr = (state: any) => state.general.error;
 
 // export the whole reducer
 export default generalSlice.reducer;

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { loginUserFromAPI, pendingLogin } from '../../App/features/generalSlice';
+import { loginErr, loginUserFromAPI, pendingLogin } from '../../App/features/generalSlice';
 import { store } from '../../App/store';
 import { Data } from '../../App/types';
 import { useSelector } from 'react-redux';
+import { Alert } from 'flowbite-react';
 
 const LoginForm = () => {
   // Admin Auth will happen in redux
@@ -12,17 +13,22 @@ const LoginForm = () => {
   });
 
   const loading = useSelector(pendingLogin);
+  const errormsg = useSelector(loginErr);
 
   const submitLogin = () => {
     store.dispatch(loginUserFromAPI(loginData));
-    console.log(loading, 'pendingLogin');
   };
 
   return (
     <div className='flex justify-center items-center my-20'>
       <div className='w-full max-w-md'>
         <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'>
-          {/* title */}
+          {/* Show error message */}
+          {errormsg && (
+            <Alert color='failure'>
+              <span className='text-red-500 text-md'>{errormsg}</span>
+            </Alert>
+          )}
           <div className='flex flex-row  my-4 justify-center space-x-2'>
             <h4 className=''>Welcome back Administrator!</h4>
             <img src='/shield-half.svg' width={20} />
